@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <img src="jnja.png" alt="神社" title="zinzya" />
+    <title>おみくじ</title>
+    <style>
+      body {
+        text-align: center;
+        background: rgb(236, 195, 107);
+        color: rgb(63, 58, 56);
+      }
+
+      h2 {
+        font-size: 40px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+
+      button {
+        font-size: 15px;
+        display: inline-block;
+        padding: 5px 10px;
+        text-decoration: none;
+        background: #6c942c;
+        color: #362a21;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+        border-bottom: solid 3px #000000;
+        border-radius: 10px; /*角の丸み*/
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      "use strict";
+      //window.onloadは、ページを全て読み込んでから処理します。
+      window.onload = function () {
+        /**
+         * Event:onDblClick,onclick,onchange,onload,onSelect,onMouseUp...
+         */
+        //配列でおみくじの内容を定義
+        let omikuji = ["大吉", "中吉", "小吉", "吉", "凶"];
+        let coment = [
+          "おめでとう！今日は良い日になります♡",
+          "すごい！良いことが起こりそう！",
+          "そこそこ良い日になりそう！",
+          "まあまあかな、、頑張れば報われるかも！",
+          "ざんねん、、今日はイマイチな日かも"
+        ];
+
+        //ボタンがクリックされたら、ランダム値（乱数）を発生させ、結果をHTMLに埋め込む
+        document.getElementById("omikuji_btn").onclick = function (event) {
+          alert("結果は、、、、、");
+          let num = Math.floor(Math.random() * omikuji.length);
+          document.getElementById("view").textContent = omikuji[num];
+          document.getElementById("moji").textContent = coment[num];
+
+          if (num == 0) {
+            document.getElementById("view").style.color = "rgb(175, 42, 37)";
+            document.getElementById("gazou").src = "daikichi.png";
+          } else if (num == 1) {
+            document.getElementById("view").style.color = "rgb(18, 68, 20)";
+            document.getElementById("gazou").src = "chukichi.png";
+          } else if (num == 2) {
+            document.getElementById("view").style.color = "rgb(153, 94, 153)";
+            document.getElementById("gazou").src = "shoukichi.png";
+          } else if (num == 3) {
+            document.getElementById("view").style.color = "rgb(221, 133, 18)";
+            document.getElementById("gazou").src = "kichi.png";
+          } else {
+            document.getElementById("view").style.color = "rgb(23, 44, 75)";
+            document.getElementById("gazou").src = "kyo.png";
+          }
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <h1>おみくじ</h1>
+    <!-- 現在の要素 -->
+    <div id="main">
+      <img src="kuji.png" id="gazou" width="120" height="160" />
+      <p><button id="omikuji_btn">おみくじstart</button></p>
+      <h2 id="view"></h2>
+      <p id="moji"></p>
+      <p id="m"></p>
+    </div>
+  </body>
+</html>
